@@ -1,2 +1,2 @@
-# Sudoku
+# Sudoku & Tic-Tac-Toe
  
