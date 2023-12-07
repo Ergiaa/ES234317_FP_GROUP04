@@ -7,12 +7,10 @@
     <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel$CellInputListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel$CellInputListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/InputBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/InputBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/InputBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/InputBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
