@@ -1,4 +1,7 @@
 package sudoku;
+
+import java.util.Random;
+
 public class Puzzle {
     // All variables have package access
     // The numbers on the puzzle
@@ -54,7 +57,36 @@ public class Puzzle {
             }
         }
     }
-
+    public boolean check(int row, int col){
+        for (int i = 0; i < 9; i++) {
+            if (i != col && numbers[row][col] == numbers[row][i]) {
+                return false;
+            }
+            if (i != row && numbers[row][col] == numbers[i][col]) {
+                return false;
+            }
+        }
+        for (int r = (row / 3) * 3; r <= (row / 3) * 3 + 3; r++) {
+            for (int c = (col / 3) * 3; c <= (col / 3) * 3 + 3; c++) {
+                if (r != row && c != col && numbers[row][col] == numbers[r][c]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public int[][] puzzleCreator() {
+        int[][] puzzle = new int[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
+        Random r = new Random();
+        for(int row = 0; row < 9; row++){
+            for(int col = 0; col < 9; col++){
+                do {
+                    puzzle[row][col] = r.nextInt(9) + 1;
+                } while (!check(row, col));
+            }
+        }
+        return puzzle;
+    }
     //(For advanced students) use singleton design pattern for this class
 }
 

@@ -8,7 +8,7 @@ import javax.swing.*;
  */
     public class SudokuMain extends JFrame {
         private static final long serialVersionUID = 1L;  // to prevent serial warning
-        public static int input;
+        public static int input = 1;
 
     // private variables
         GameBoardPanel board = new GameBoardPanel();

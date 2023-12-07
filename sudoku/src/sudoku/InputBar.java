@@ -1,36 +1,31 @@
 package sudoku;
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class InputBar extends JPanel {
+    JButton[] buttons;
+    int currInput = 0;
     InputBar(){
+        buttons = new JButton[9];
         init();
     }
     public void init(){
-        JButton btn_1 = new JButton("1");
-        btn_1.addActionListener(e -> SudokuMain.input = 1);
-        add(btn_1);
-        JButton btn_2 = new JButton("2");
-        btn_2.addActionListener(e -> SudokuMain.input = 2);
-        add(btn_2);
-        JButton btn_3 = new JButton("3");
-        btn_3.addActionListener(e -> SudokuMain.input = 3);
-        add(btn_3);
-        JButton btn_4 = new JButton("4");
-        btn_4.addActionListener(e -> SudokuMain.input = 4);
-        add(btn_4);
-        JButton btn_5 = new JButton("5");
-        btn_5.addActionListener(e -> SudokuMain.input = 5);
-        add(btn_5);
-        JButton btn_6 = new JButton("6");
-        btn_6.addActionListener(e -> SudokuMain.input = 6);
-        add(btn_6);
-        JButton btn_7 = new JButton("7");
-        btn_7.addActionListener(e -> SudokuMain.input = 7);
-        add(btn_7);
-        JButton btn_8 = new JButton("8");
-        btn_8.addActionListener(e -> SudokuMain.input = 8);
-        add(btn_8);
-        JButton btn_9 = new JButton("9");
-        btn_9.addActionListener(e -> SudokuMain.input = 9);
-        add(btn_9);
+        for(int i = 1; i <= 9; i++){
+            buttons[i - 1] = new JButton("" + i);
+            buttons[i - 1].setBackground(Color.WHITE);
+            int val = i;
+            buttons[i - 1].addActionListener(e -> {
+                SudokuMain.input = val;
+                buttons[val - 1].setBackground(Color.GREEN);
+                buttons[currInput - 1].setBackground(Color.WHITE);
+                currInput = val;
+            });
+            add(buttons[i - 1]);
+        }
+        currInput = 1;
+        buttons[0].setBackground(Color.GREEN);
     }
 }
