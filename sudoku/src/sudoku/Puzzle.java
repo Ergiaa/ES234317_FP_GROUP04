@@ -1,7 +1,4 @@
 package sudoku;
-/**
- * The Sudoku number puzzle to be solved
- */
 public class Puzzle {
     // All variables have package access
     // The numbers on the puzzle
@@ -44,10 +41,10 @@ public class Puzzle {
                         {true, true, true, true, true, true, true, true, false},
                         {true, true, true, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
+                        {true, false, true, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
-                        {true, true, true, true, true, true, true, true, true},
-                        {true, true, true, true, true, true, true, true, true},
+                        {true, true, true, true, true, false, true, true, true},
                         {true, true, true, true, true, true, true, true, true}};
 
         // Copy from hardcodedIsGiven into array "isGiven"
@@ -60,3 +57,4 @@ public class Puzzle {
 
     //(For advanced students) use singleton design pattern for this class
 }
+

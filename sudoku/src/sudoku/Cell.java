@@ -1,19 +1,15 @@
 package sudoku;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JTextField;
-/**
- * The Cell class model the cells of the Sudoku puzzle, by customizing (subclass)
- * the javax.swing.JTextField to include row/column, puzzle number and status.
- */
+import javax.swing.*;
+import java.awt.*;
+
 public class Cell extends JTextField {
     private static final long serialVersionUID = 1L;  // to prevent serial warning
 
     // Define named constants for JTextField's colors and fonts
     //  to be chosen based on CellStatus
-    public static final Color BG_GIVEN = new Color(240, 240, 240); // RGB
-    public static final Color FG_GIVEN = Color.BLACK;
-    public static final Color FG_NOT_GIVEN = Color.GRAY;
+    public static final Color BG_GIVEN = new Color(0, 0, 0); // RGB
+    public static final Color FG_GIVEN = Color.WHITE;
+    public static final Color FG_NOT_GIVEN = Color.BLACK;
     public static final Color BG_TO_GUESS  = Color.YELLOW;
     public static final Color BG_CORRECT_GUESS = new Color(0, 216, 0);
     public static final Color BG_WRONG_GUESS   = new Color(216, 0, 0);
@@ -64,20 +60,19 @@ public class Cell extends JTextField {
             super.setBackground(BG_WRONG_GUESS);
         }
     }
-
-    public int getNumber() {
+    public int getNumber(){
         return number;
     }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public void setStatus(CellStatus status) {
         this.status = status;
     }
 
-    public CellStatus getStatus() {
-        return status;
+    public int getRow() {
+        return row;
     }
+
+    public int getCol() {
+        return col;
+    }
+
 }
