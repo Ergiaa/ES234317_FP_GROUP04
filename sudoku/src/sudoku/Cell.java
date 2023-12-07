@@ -2,7 +2,7 @@ package sudoku;
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell extends JTextField {
+public class Cell extends JButton {
     private static final long serialVersionUID = 1L;  // to prevent serial warning
 
     // Define named constants for JTextField's colors and fonts
@@ -45,13 +45,14 @@ public class Cell extends JTextField {
         if (status == CellStatus.GIVEN) {
             // Inherited from JTextField: Set display properties
             super.setText(number + "");
-            super.setEditable(false);
+//            super.setEditable(false);
             super.setBackground(BG_GIVEN);
             super.setForeground(FG_GIVEN);
         } else if (status == CellStatus.TO_GUESS) {
             // Inherited from JTextField: Set display properties
             super.setText("");
-            super.setEditable(true);
+//            super.setEditable(true);
+            super.addActionListener(e -> setText("" + SudokuMain.input));
             super.setBackground(BG_TO_GUESS);
             super.setForeground(FG_NOT_GIVEN);
         } else if (status == CellStatus.CORRECT_GUESS) {  // from TO_GUESS

@@ -8,9 +8,11 @@ import javax.swing.*;
  */
     public class SudokuMain extends JFrame {
         private static final long serialVersionUID = 1L;  // to prevent serial warning
+        public static int input;
 
-        // private variables
+    // private variables
         GameBoardPanel board = new GameBoardPanel();
+        InputBar inputBar = new InputBar();
         JButton btnNewGame = new JButton("New Game");
 
         // Constructor
@@ -19,6 +21,7 @@ import javax.swing.*;
             cp.setLayout(new BorderLayout());
 
             cp.add(board, BorderLayout.CENTER);
+            cp.add(inputBar, BorderLayout.PAGE_START);
 
             // Add a button to the south to re-start the game via board.newGame()
             btnNewGame.addActionListener(new ActionListener() {

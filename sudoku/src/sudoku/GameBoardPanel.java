@@ -81,18 +81,20 @@ public class GameBoardPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             // Get a reference of the JTextField that triggers this action event
             Cell sourceCell = (Cell) e.getSource();
-            // Retrieve the int entered
-            int numberIn = Integer.parseInt(sourceCell.getText());
-            // For debugging
-            System.out.println("You entered " + numberIn);
-            if (numberIn == sourceCell.getNumber()) {
-                sourceCell.setStatus(CellStatus.CORRECT_GUESS);
-            } else {
-                sourceCell.setStatus(CellStatus.WRONG_GUESS);
-            }
-            sourceCell.paint(); // re-paint this cell based on its status
-            if (isSolved()) {
-                JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+            if(sourceCell.status == CellStatus.TO_GUESS || sourceCell.status == CellStatus.WRONG_GUESS) {
+                // Retrieve the int entered
+                int numberIn = Integer.parseInt(sourceCell.getText());
+                // For debugging
+                System.out.println("You entered " + numberIn);
+                if (numberIn == sourceCell.getNumber()) {
+                    sourceCell.setStatus(CellStatus.CORRECT_GUESS);
+                } else {
+                    sourceCell.setStatus(CellStatus.WRONG_GUESS);
+                }
+                sourceCell.paint(); // re-paint this cell based on its status
+                if (isSolved()) {
+                    JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+                }
             }
         }
     }

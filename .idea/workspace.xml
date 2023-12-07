@@ -5,19 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/sudoku/src/sudoku/InputBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/CellStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/CellStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tictactoe/src/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tictactoe/src/GameMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,6 +39,15 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sudoku.Main" />
+      <module name="sudoku" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,5 +58,8 @@
       <updated>1701949754532</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
