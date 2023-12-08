@@ -1,3 +1,12 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2023/2024
+ * Group Capstone Project
+ * Group #4
+ * 1 - 5026221045 - Mutiara Noor Fauzia
+ * 2 - 5026221096 - Viera Tito Virgiawan
+ * 3 - 5026221193 - Maureen Ghassani Fadhliphya
+ */
 import java.awt.*;
 /**
  * The Board class models the ROWS-by-COLS game board.
@@ -11,7 +20,7 @@ public class Board {
     public static final int CANVAS_HEIGHT = Cell.SIZE * ROWS;
     public static final int GRID_WIDTH = 8;  // Grid-line's width
     public static final int GRID_WIDHT_HALF = GRID_WIDTH / 2; // Grid-line's half-width
-    public static final Color COLOR_GRID = Color.LIGHT_GRAY;  // grid lines
+    public static final Color COLOR_GRID = Color.BLACK;  // grid lines
     public static final int Y_OFFSET = 1;  // Fine tune for better display
 
     // Define properties (package-visible)

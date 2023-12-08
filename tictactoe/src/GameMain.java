@@ -20,11 +20,11 @@ public class GameMain extends JPanel {
 
     // Define named constants for the drawing graphics
     public static final String TITLE = "Tic Tac Toe";
-    public static final Color COLOR_BG = Color.WHITE;
-    public static final Color COLOR_BG_STATUS = new Color(216, 216, 216);
-    public static final Color COLOR_CROSS = new Color(239, 105, 80);  // Red #EF6950
-    public static final Color COLOR_NOUGHT = new Color(64, 154, 225); // Blue #409AE1
-    public static final Font FONT_STATUS = new Font("OCR A Extended", Font.PLAIN, 14);
+    public static final Color COLOR_BG = new Color(241, 250, 238);
+    public static final Color COLOR_BG_STATUS = new Color(29, 53, 87);
+    public static final Color COLOR_CROSS = new Color(230, 57, 70);
+    public static final Color COLOR_NOUGHT = new Color(168, 218, 220);
+    public static final Font FONT_STATUS = new Font("NUNITO", Font.PLAIN, 14);
 
     // Define game objects
     private Board board;         // the game board
@@ -67,7 +67,7 @@ public class GameMain extends JPanel {
         statusBar.setBackground(COLOR_BG_STATUS);
         statusBar.setOpaque(true);
         statusBar.setPreferredSize(new Dimension(300, 30));
-        statusBar.setHorizontalAlignment(JLabel.LEFT);
+        statusBar.setHorizontalAlignment(JLabel.CENTER);
         statusBar.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 12));
 
         super.setLayout(new BorderLayout());
@@ -107,16 +107,16 @@ public class GameMain extends JPanel {
 
         // Print status-bar message
         if (currentState == State.PLAYING) {
-            statusBar.setForeground(Color.BLACK);
+            statusBar.setForeground(new Color(241, 250, 238));
             statusBar.setText((currentPlayer == Seed.CROSS) ? "X's Turn" : "O's Turn");
         } else if (currentState == State.DRAW) {
             statusBar.setForeground(Color.RED);
             statusBar.setText("It's a Draw! Click to play again.");
         } else if (currentState == State.CROSS_WON) {
-            statusBar.setForeground(Color.RED);
+            statusBar.setForeground(new Color(241, 250, 238));
             statusBar.setText("'X' Won! Click to play again.");
         } else if (currentState == State.NOUGHT_WON) {
-            statusBar.setForeground(Color.RED);
+            statusBar.setForeground(new Color(241, 250, 238));
             statusBar.setText("'O' Won! Click to play again.");
         }
     }
