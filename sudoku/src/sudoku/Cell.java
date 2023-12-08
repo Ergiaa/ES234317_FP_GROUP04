@@ -7,13 +7,13 @@ public class Cell extends JButton {
 
     // Define named constants for JTextField's colors and fonts
     //  to be chosen based on CellStatus
-    public static final Color BG_GIVEN = new Color(0, 0, 0); // RGB
-    public static final Color FG_GIVEN = Color.WHITE;
-    public static final Color FG_NOT_GIVEN = Color.BLACK;
-    public static final Color BG_TO_GUESS  = Color.YELLOW;
-    public static final Color BG_CORRECT_GUESS = new Color(0, 216, 0);
-    public static final Color BG_WRONG_GUESS   = new Color(216, 0, 0);
-    public static final Font FONT_NUMBERS = new Font("OCR A Extended", Font.PLAIN, 28);
+    public static final Color BG_GIVEN = new Color(29,53,87); // RGB
+    public static final Color FG_GIVEN = new Color(241, 250, 238);
+    public static final Color FG_NOT_GIVEN = new Color(45,30,47);
+    public static final Color BG_TO_GUESS  = new Color(69, 123, 157);
+    public static final Color BG_CORRECT_GUESS = new Color(168, 218, 220);
+    public static final Color BG_WRONG_GUESS   = new Color(230, 57, 70);
+    public static final Font FONT_NUMBERS = new Font("ROBOTO", Font.PLAIN, 28);
 
     // Define properties (package-visible)
     /** The row and column number [0-8] of this cell */
