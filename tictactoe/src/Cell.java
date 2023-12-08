@@ -12,6 +12,7 @@ public class Cell {
     Seed content;
     /** Row and column of this cell */
     int row, col;
+//test
 
     /** Constructor to initialize this cell with the specified row and col */
     public Cell(int row, int col) {
@@ -28,21 +29,39 @@ public class Cell {
     /** Paint itself on the graphics canvas, given the Graphics context */
     public void paint(Graphics g) {
         // Use Graphics2D which allows us to set the pen's stroke
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(SEED_STROKE_WIDTH,
                 BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         // Draw the Seed if it is not empty
         int x1 = col * SIZE + PADDING;
         int y1 = row * SIZE + PADDING;
         if (content == Seed.CROSS) {
-            g2d.setColor(GameMain.COLOR_CROSS);  // draw a 2-line cross
+            g2d.setColor(GameMain.COLOR_CROSS);  // draw a star symbol
             int x2 = (col + 1) * SIZE - PADDING;
             int y2 = (row + 1) * SIZE - PADDING;
+            int x3 = col * SIZE + SIZE / 2;
+            int y3 = row * SIZE + SIZE / 2;
+            g2d.drawLine(x1, y3, x2, y3); // horizontal line
+            g2d.drawLine(x3, y1, x3, y2); // vertical line
+            // Diagonal lines to form a star
             g2d.drawLine(x1, y1, x2, y2);
             g2d.drawLine(x2, y1, x1, y2);
-        } else if (content == Seed.NOUGHT) {  // draw a circle
+        } else if (content == Seed.NOUGHT) {  // draw a smiley symbol
             g2d.setColor(GameMain.COLOR_NOUGHT);
             g2d.drawOval(x1, y1, SEED_SIZE, SEED_SIZE);
+            // Draw eyes
+            int eyeSize = SEED_SIZE / 6;
+            int eyeX1 = x1 + SEED_SIZE / 3;
+            int eyeY = y1 + SEED_SIZE / 3;
+            int eyeX2 = x1 + SEED_SIZE * 2 / 3;
+            g2d.fillOval(eyeX1, eyeY, eyeSize, eyeSize);
+            g2d.fillOval(eyeX2, eyeY, eyeSize, eyeSize);
+            // Draw mouth (arc)
+            int mouthX = x1 + SEED_SIZE / 4;
+            int mouthY = y1 + SEED_SIZE / 2;
+            int mouthWidth = SEED_SIZE / 2;
+            int mouthHeight = SEED_SIZE / 4;
+            g2d.drawArc(mouthX, mouthY, mouthWidth, mouthHeight, 0, -180);
         }
     }
 }
