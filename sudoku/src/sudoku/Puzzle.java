@@ -18,7 +18,7 @@ public class Puzzle {
     // The clues - isGiven (no need to guess) or need to guess
     boolean[][] isGiven = new boolean[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     Solver solver = new Solver();
-    Scanner sc = new Scanner(Main.class.getResourceAsStream("easy"));
+    Scanner sc = new Scanner(Main.class.getResourceAsStream("puzzleNums"));
     Scanner scTF = new Scanner(Main.class.getResourceAsStream("trueFalse"));
 
     // Constructor
