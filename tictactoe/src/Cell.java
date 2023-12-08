@@ -12,6 +12,7 @@ public class Cell {
     Seed content;
     /** Row and column of this cell */
     int row, col;
+//test
 
     /** Constructor to initialize this cell with the specified row and col */
     public Cell(int row, int col) {
