@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Solver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sudoku/src/sudoku/easy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/GameBoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +47,14 @@
       <recent name="D:\Uni\Final-Project-ASD\sudoku\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GameMain">
+    <configuration name="GameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameMain" />
+      <module name="tictactoe" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sudoku.Main" />
       <module name="sudoku" />
@@ -60,6 +62,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.GameMain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameMain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

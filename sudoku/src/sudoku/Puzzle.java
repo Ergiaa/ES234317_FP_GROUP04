@@ -62,11 +62,16 @@ public class Puzzle {
 
         // Copy from hardcodedIsGiven into array "isGiven
         i = 0;
-        String pTF = scTF.nextLine();
+        String pTF = "";
+        if(scTF.hasNext()) pTF = scTF.nextLine();
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                isGiven[row][col] = Integer.parseInt("" + pTF.charAt(i)) != 0;
-                i++;
+                if(pTF.equals("")){
+                    isGiven[row][col] = hardcodedIsGiven[row][col];
+                } else{
+                    isGiven[row][col] = Integer.parseInt("" + pTF.charAt(i)) != 0;
+                    i++;
+                }
             }
         }
     }
