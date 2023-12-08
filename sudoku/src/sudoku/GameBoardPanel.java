@@ -68,6 +68,7 @@ public class GameBoardPanel extends JPanel {
 
         // Reset timer display
         timerLabel.setText("Timer: 0 seconds");
+        timer.start();
     }
 
     public boolean isSolved() {

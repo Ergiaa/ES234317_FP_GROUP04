@@ -45,7 +45,6 @@ public class SudokuMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 secondsPassed = 0;
                 updateTimerLabel();
-                timer.start();
                 board.newGame();
             }
         });

@@ -19,6 +19,7 @@ public class Puzzle {
     // This method shall set (or update) the arrays numbers and isGiven
     public void newPuzzle(int cellsToGuess) {
         // I hardcode a puzzle here for illustration and testing.
+//        numbers = puzzleCreator();
         int[][] hardcodedNumbers =
                 {{5, 3, 4, 6, 7, 8, 9, 1, 2},
                         {6, 7, 2, 1, 9, 5, 3, 4, 8},
@@ -42,11 +43,11 @@ public class Puzzle {
         boolean[][] hardcodedIsGiven =
                 {{true, true, true, true, true, false, true, true, true},
                         {true, true, true, true, true, true, true, true, false},
-                        {true, true, true, true, true, true, true, true, true},
+                        {true, true, false, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
                         {true, false, true, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
-                        {true, true, true, true, true, true, true, true, true},
+                        {true, true, true, true, true, true, false, true, true},
                         {true, true, true, true, true, false, true, true, true},
                         {true, true, true, true, true, true, true, true, true}};
 
@@ -66,8 +67,8 @@ public class Puzzle {
                 return false;
             }
         }
-        for (int r = (row / 3) * 3; r <= (row / 3) * 3 + 3; r++) {
-            for (int c = (col / 3) * 3; c <= (col / 3) * 3 + 3; c++) {
+        for (int r = (row - 1) / 3 * 3 + 1; r <= (row + 2) / 3 * 3; r++) {
+            for (int c = (col - 1) / 3 * 3 + 1; c <= (col + 2) / 3 * 3; c++) {
                 if (r != row && c != col && numbers[row][col] == numbers[r][c]) {
                     return false;
                 }
@@ -75,17 +76,16 @@ public class Puzzle {
         }
         return true;
     }
-    public int[][] puzzleCreator() {
-        int[][] puzzle = new int[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
+    public int[][] puzzleCreator(){
         Random r = new Random();
         for(int row = 0; row < 9; row++){
             for(int col = 0; col < 9; col++){
                 do {
-                    puzzle[row][col] = r.nextInt(9) + 1;
+                    numbers[row][col] = r.nextInt(9) + 1;
                 } while (!check(row, col));
             }
         }
-        return puzzle;
+        return numbers;
     }
     //(For advanced students) use singleton design pattern for this class
 }

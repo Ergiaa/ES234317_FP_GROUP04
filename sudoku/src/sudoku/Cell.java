@@ -52,7 +52,11 @@ public class Cell extends JButton {
             // Inherited from JTextField: Set display properties
             super.setText("");
 //            super.setEditable(true);
-            super.addActionListener(e -> setText("" + SudokuMain.input));
+            super.addActionListener(e -> {
+                if(status == CellStatus.TO_GUESS || status == CellStatus.WRONG_GUESS){
+                    setText("" + SudokuMain.input);
+                }
+            });
             super.setBackground(BG_TO_GUESS);
             super.setForeground(FG_NOT_GIVEN);
         } else if (status == CellStatus.CORRECT_GUESS) {  // from TO_GUESS
