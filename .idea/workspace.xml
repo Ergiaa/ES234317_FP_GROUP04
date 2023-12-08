@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" afterDir="false" />
-    </list>
+    <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +74,17 @@
       <updated>1701949754532</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
