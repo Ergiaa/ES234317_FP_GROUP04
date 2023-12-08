@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Solver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Solver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Solver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/GameMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/GameMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Seed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Seed.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/State.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
