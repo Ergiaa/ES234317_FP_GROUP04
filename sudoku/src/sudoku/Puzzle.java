@@ -1,6 +1,6 @@
 package sudoku;
 
-import java.util.Random;
+import java.util.*;
 
 public class Puzzle {
     // All variables have package access
@@ -8,6 +8,9 @@ public class Puzzle {
     int[][] numbers = new int[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     // The clues - isGiven (no need to guess) or need to guess
     boolean[][] isGiven = new boolean[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
+    Solver solver = new Solver();
+    Scanner sc = new Scanner(Main.class.getResourceAsStream("easy"));
+    Scanner scTF = new Scanner(Main.class.getResourceAsStream("trueFalse"));
 
     // Constructor
     public Puzzle() {
@@ -20,23 +23,29 @@ public class Puzzle {
     public void newPuzzle(int cellsToGuess) {
         // I hardcode a puzzle here for illustration and testing.
 //        numbers = puzzleCreator();
-        int[][] hardcodedNumbers =
-                {{5, 3, 4, 6, 7, 8, 9, 1, 2},
-                        {6, 7, 2, 1, 9, 5, 3, 4, 8},
-                        {1, 9, 8, 3, 4, 2, 5, 6, 7},
-                        {8, 5, 9, 7, 6, 1, 4, 2, 3},
-                        {4, 2, 6, 8, 5, 3, 7, 9, 1},
-                        {7, 1, 3, 9, 2, 4, 8, 5, 6},
-                        {9, 6, 1, 5, 3, 7, 2, 8, 4},
-                        {2, 8, 7, 4, 1, 9, 6, 3, 5},
-                        {3, 4, 5, 2, 8, 6, 1, 7, 9}};
+//        int[][] hardcodedNumbers =
+//                {{5, 3, 4, 0, 7, 8, 9, 1, 2},
+//                        {6, 7, 2, 1, 9, 5, 3, 4, 8},
+//                        {1, 9, 8, 3, 4, 2, 5, 6, 7},
+//                        {8, 5, 9, 7, 6, 1, 4, 2, 3},
+//                        {4, 2, 6, 8, 5, 3, 7, 9, 1},
+//                        {7, 1, 3, 9, 2, 4, 8, 5, 6},
+//                        {9, 6, 1, 5, 0, 7, 2, 8, 4},
+//                        {2, 8, 7, 4, 1, 9, 6, 3, 5},
+//                        {3, 4, 5, 2, 8, 6, 1, 7, 9}};
+//
+//        solver.solveSudoku(hardcodedNumbers,0,0);
 
         // Copy from hardcodedNumbers into the array "numbers"
+        String p = sc.nextLine();
+        int i = 0;
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                numbers[row][col] = hardcodedNumbers[row][col];
+                numbers[row][col] = Integer.parseInt("" + p.charAt(i));
+                i++;
             }
         }
+        solver.solveSudoku(numbers,0,0);
 
         // Need to use input parameter cellsToGuess!
         // Hardcoded for testing, only 2 cells of "8" is NOT GIVEN
@@ -47,14 +56,17 @@ public class Puzzle {
                         {true, true, true, true, true, true, true, true, true},
                         {true, false, true, true, true, true, true, true, true},
                         {true, true, true, true, true, true, true, true, true},
-                        {true, true, true, true, true, true, false, true, true},
+                        {true, true, true,   true, true, true, false, true, true},
                         {true, true, true, true, true, false, true, true, true},
                         {true, true, true, true, true, true, true, true, true}};
 
-        // Copy from hardcodedIsGiven into array "isGiven"
+        // Copy from hardcodedIsGiven into array "isGiven
+        i = 0;
+        String pTF = scTF.nextLine();
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                isGiven[row][col] = hardcodedIsGiven[row][col];
+                isGiven[row][col] = Integer.parseInt("" + pTF.charAt(i)) != 0;
+                i++;
             }
         }
     }

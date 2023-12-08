@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class SudokuMain extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -13,6 +14,7 @@ public class SudokuMain extends JFrame {
     private GameBoardPanel board;
     private InputBar inputBar;
     private JButton btnNewGame;
+    private JButton btnHint;
     private Timer timer;
     private JLabel timerLabel;
 
@@ -40,6 +42,7 @@ public class SudokuMain extends JFrame {
 
         // Create a button to start a new game
         btnNewGame = new JButton("New Game");
+        btnHint = new JButton("Hint");
         btnNewGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +51,30 @@ public class SudokuMain extends JFrame {
                 board.newGame();
             }
         });
+//        btnHint.addActionListener(e -> {
+//            Random r = new Random();
+//            int row = 0, col = 0;
+//            for(int i = 0; i < 9; i++){
+//                for(int j = 0; j < 9; j++){
+//                    if(!board.getPuzzle().isGiven[i][j]){
+//                        row = i;
+//                        col = j;
+//                        break;
+//                    }
+//                }
+//                if(!board.getPuzzle().isGiven[row][col]){
+//                    break;
+//                }
+//            }
+//            board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
+//            board.getCells()[row][col].paint();
+//            if (board.isSolved()) {
+//                timer.stop();
+//                JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+//            }
+//        });
         cp.add(btnNewGame, BorderLayout.SOUTH);
+//        cp.add(btnHint, BorderLayout.LINE_END);
 
         // Add the GameBoardPanel and InputBar to the center of the layout
         cp.add(board, BorderLayout.CENTER);

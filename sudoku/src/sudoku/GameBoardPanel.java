@@ -102,4 +102,10 @@ public class GameBoardPanel extends JPanel {
             }
         }
     }
+    public Puzzle getPuzzle() {
+        return puzzle;
+    }
+    public Cell[][] getCells() {
+        return cells;
+    }
 }
