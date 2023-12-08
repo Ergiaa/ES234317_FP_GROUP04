@@ -82,12 +82,15 @@ public class SudokuMain extends JFrame {
                         found = false;
                         break;
                     }
+                    found = true;
                 }
-                board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
-                board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
-                board.getCells()[row][col].paint();
-                hintCount++;
-                if (board.isSolved()) {
+                if(board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
+                    board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
+                    board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
+                    board.getCells()[row][col].paint();
+                    hintCount++;
+                }
+                if (board.isSolved() && found) {
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
                 }
@@ -108,8 +111,8 @@ public class SudokuMain extends JFrame {
                 }
             }
         });
-        btnPanel.add(btnNewGame);
         btnPanel.add(btnHint);
+        btnPanel.add(btnNewGame);
         btnPanel.add(btnSolve);
         cp.add(btnPanel, BorderLayout.SOUTH);
 
