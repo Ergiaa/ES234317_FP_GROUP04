@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/trueFalse" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

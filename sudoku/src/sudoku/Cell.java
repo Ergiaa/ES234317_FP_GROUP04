@@ -52,15 +52,11 @@ public class Cell extends JButton {
     /** This Cell (JTextField) paints itself based on its status */
     public void paint() {
         if (status == CellStatus.GIVEN) {
-            // Inherited from JTextField: Set display properties
             super.setText(number + "");
-//            super.setEditable(false);
             super.setBackground(BG_GIVEN);
             super.setForeground(FG_GIVEN);
         } else if (status == CellStatus.TO_GUESS) {
-            // Inherited from JTextField: Set display properties
             super.setText("");
-//            super.setEditable(true);
             super.addActionListener(e -> {
                 if(status == CellStatus.TO_GUESS || status == CellStatus.WRONG_GUESS){
                     setText("" + SudokuMain.input);
@@ -80,13 +76,4 @@ public class Cell extends JButton {
     public void setStatus(CellStatus status) {
         this.status = status;
     }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
 }

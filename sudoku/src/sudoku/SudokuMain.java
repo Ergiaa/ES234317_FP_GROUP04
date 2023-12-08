@@ -57,7 +57,7 @@ public class SudokuMain extends JFrame {
         btnSolve = new JButton("Solve");
         btnNewGame.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 secondsPassed = 0;
                 hintCount = 0;
                 updateTimerLabel();
@@ -65,7 +65,7 @@ public class SudokuMain extends JFrame {
             }
         });
         btnHint.addActionListener(e -> {
-            if(hintCount < 3) {
+            if(hintCount < 3){
                 Random r = new Random();
                 int row = 0, col = 0;
                 boolean found = false;
