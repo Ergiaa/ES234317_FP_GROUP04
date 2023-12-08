@@ -12,7 +12,6 @@ public class SudokuMain extends JFrame {
     private int secondsPassed;
 
     private GameBoardPanel board;
-    private InputBar inputBar;
     private JButton btnNewGame;
     private JButton btnHint;
     private Timer timer;
@@ -38,7 +37,6 @@ public class SudokuMain extends JFrame {
 
         // Create instances of GameBoardPanel and InputBar
         board = new GameBoardPanel(timer);
-        inputBar = new InputBar();
 
         // Create a button to start a new game
         btnNewGame = new JButton("New Game");
@@ -78,7 +76,6 @@ public class SudokuMain extends JFrame {
 
         // Add the GameBoardPanel and InputBar to the center of the layout
         cp.add(board, BorderLayout.CENTER);
-        //cp.add(inputBar, BorderLayout.PAGE_START);
 
         // Initialize the UI
         pack();
