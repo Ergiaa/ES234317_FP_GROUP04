@@ -36,7 +36,8 @@ public class Puzzle {
             }
         }
         //Since puzzle from puzzleNums is incomplete, complete using a solver
-        solver.solveSudoku(numbers,0,0);
+        solver.solve(numbers);
+//        solver.solveSudoku(numbers,0,0);
 
         // Fill array isGiven from file trueFalse
         i = 0;

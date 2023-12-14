@@ -68,31 +68,34 @@ public class SudokuMain extends JFrame {
             if(hintCount < 3){
                 Random r = new Random();
                 int row = 0, col = 0;
+                int count = 0;
                 boolean found = false;
-                for (int i = 0; i < 9; i++) {
-                    for (int j = 0; j < 9; j++) {
-                        if (board.getCells()[i][j].status == CellStatus.TO_GUESS || board.getCells()[i][j].status == CellStatus.WRONG_GUESS) {
-                            row = i;
-                            col = j;
+                do{
+                    row = r.nextInt(8) + 1;
+                    count = 0;
+                    do{
+                        col = r.nextInt(8) + 1;
+                        count++;
+                        if (board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
                             found = true;
                             break;
                         }
-                    }
+                        if(count > 9) break;
+                    } while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
                     if (found) {
                         found = false;
                         break;
                     }
-                    found = true;
-                }
+                }while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
                 if(board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
                     board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
                     board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
                     board.getCells()[row][col].paint();
                     hintCount++;
-                }
-                if (board.isSolved() && found) {
-                    timer.stop();
-                    JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+                    if (board.isSolved()) {
+                        timer.stop();
+                        JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+                    }
                 }
             }
         });
