@@ -88,7 +88,7 @@ public class GameBoardPanel extends JPanel {
     public boolean isSolved() {
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                if (cells[row][col].status == CellStatus.TO_GUESS || cells[row][col].status == CellStatus.WRONG_GUESS) {
+                if (status != GameStatus.FAILED && cells[row][col].status == CellStatus.TO_GUESS || cells[row][col].status == CellStatus.WRONG_GUESS) {
                     status = GameStatus.SUCCESS;
                     return false;
                 }
@@ -99,6 +99,11 @@ public class GameBoardPanel extends JPanel {
     public void endGame(){
         timer.stop();
         status = GameStatus.FAILED;
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+                cells[row][col].endGame();
+            }
+        }
         JOptionPane.showMessageDialog(null, "Sorry! You make too much mistake, try again!");
     }
 

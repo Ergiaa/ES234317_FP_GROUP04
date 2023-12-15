@@ -45,8 +45,12 @@ public class Cell extends JButton {
     /** Reset this cell for a new game, given the puzzle number and isGiven */
     public void newGame(int number, boolean isGiven) {
         this.number = number;
+        setEnabled(true);
         status = isGiven ? CellStatus.GIVEN : CellStatus.TO_GUESS;
         paint();    // paint itself
+    }
+    public void endGame(){
+        super.setEnabled(false);
     }
 
     /** This Cell (JTextField) paints itself based on its status */
