@@ -1,101 +1,110 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2023/2024
+ * Group Capstone Project
+ * Group #4
+ * 1 - 5026221045 - Mutiara Noor Fauzia
+ * 2 - 5026221096 - Viera Tito Virgiawan
+ * 3 - 5026221193 - Maureen Ghassani Fadhliphya
+ */
 package sudoku;
+
+import java.util.Stack;
+
 public class Solver {
-
-    static int N = 9;
-    public boolean solveSudoku(int grid[][], int row,
-                               int col)
+    public boolean solveSudoku(int grid[][], int row, int col)
     {
-
-		/*if we have reached the 8th
-		row and 9th column (0
-		indexed matrix) ,
-		we are returning true to avoid further
-		backtracking	 */
-        if (row == N - 1 && col == N)
-            return true;
-
-        // Check if column value becomes 9 ,
-        // we move to next row
-        // and column start from 0
-        if (col == N) {
+        if (row == SudokuConstants.GRID_SIZE - 1 && col == SudokuConstants.GRID_SIZE) return true;
+        if (col == SudokuConstants.GRID_SIZE) {
             row++;
             col = 0;
         }
-
-        // Check if the current position
-        // of the grid already
-        // contains value >0, we iterate
-        // for next column
-        if (grid[row][col] != 0)
-            return solveSudoku(grid, row, col + 1);
+        if (grid[row][col] != 0) return solveSudoku(grid, row, col + 1);
 
         for (int num = 1; num < 10; num++) {
-
-            // Check if it is safe to place
-            // the num (1-9) in the
-            // given row ,col ->we move to next column
             if (isSafe(grid, row, col, num)) {
-
-				/* assigning the num in the current
-				(row,col) position of the grid and
-				assuming our assigned num in the position
-				is correct */
                 grid[row][col] = num;
-
-                // Checking for next
-                // possibility with next column
-                if (solveSudoku(grid, row, col + 1))
-                    return true;
+                if (solveSudoku(grid, row, col + 1)) return true;
             }
-			/* removing the assigned num , since our
-			assumption was wrong , and we go for next
-			assumption with diff num value */
             grid[row][col] = 0;
         }
         return false;
     }
-
-    /* A utility function to print grid */
-    public void print(int[][] grid)
-    {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++)
-                System.out.print(grid[i][j] + " ");
-            System.out.println();
-        }
-    }
-
-    // Check whether it will be legal
-    // to assign num to the
-    // given row, col
-    public boolean isSafe(int[][] grid, int row, int col,
-                          int num)
-    {
-
-        // Check if we find the same num
-        // in the similar row , we
-        // return false
-        for (int x = 0; x <= 8; x++)
-            if (grid[row][x] == num)
-                return false;
-
-        // Check if we find the same num
-        // in the similar column ,
-        // we return false
-        for (int x = 0; x <= 8; x++)
-            if (grid[x][col] == num)
-                return false;
-
-        // Check if we find the same num
-        // in the particular 3*3
-        // matrix, we return false
-        int startRow = row - row % 3, startCol
-                = col - col % 3;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (grid[i + startRow][j + startCol] == num)
+    public boolean solve(int grid[][]){
+        Stack<Cell> stack = new Stack<>();
+        boolean[][] isLocked = setLocked(grid);
+        int curRow = 0;
+        int curCol = 0;
+        int curValue = 1;
+        int time = 0 ;
+        while(stack.size() < 81){
+            time++;
+            if(isLocked[curRow][curCol]){
+                Cell lockedCell = new Cell(curRow, curCol);
+                lockedCell.number = grid[curRow][curCol];
+                stack.push(lockedCell);
+                curRow = curRow + (curCol+1)/9;
+                curCol = (curCol+1)%9;
+                continue;
+            }
+            for (;curValue <= 9 ; curValue++){
+                if (isSafe(grid, curRow, curCol, curValue)){
+                    Cell cell = new Cell(curRow, curCol);
+                    cell.number = curValue;
+                    grid[curRow][curCol] = curValue;
+                    stack.push(cell);
+                    curRow = curRow + (curCol+1)/9;
+                    curCol = (curCol+1)%9;
+                    curValue = 1;
+                    break;
+                }
+            }
+            if(curValue > 9){
+                if (!stack.isEmpty()) {
+                    Cell cell = stack.pop();
+                    while (isLocked[cell.row][cell.col]) {
+                        if (!stack.isEmpty()) {
+                            cell = stack.pop();
+                        } else {
+                            System.out.println("Number of steps: " + time);
+                            return false;
+                        }
+                    }
+                    curRow = cell.row;
+                    curCol = cell.col;
+                    curValue = cell.number + 1;
+                    grid[curRow][curCol] =  0;
+                } else {
+                    System.out.println("Number of steps: " + time);
                     return false;
-
+                }
+            }
+        }
+        return true;
+    }
+    public boolean[][] setLocked(int[][] board){
+        boolean[][] isLocked = new boolean[9][9];
+        for(int r = 0 ; r < 9 ; r++){
+            for(int c = 0 ; c < 9 ; c++){
+                if(board[r][c]!=0){
+                    isLocked[r][c] = true;
+                }
+            }
+        }
+        return isLocked;
+    }
+    public boolean isSafe(int[][] grid, int row, int col, int num)
+    {
+        for (int i = 0; i < 9; i++) {
+            if (i != col && num == grid[row][i]) return false;
+            if (i != row && num == grid[i][col]) return false;
+        }
+        int startRow = row - row % 3, startCol = col - col % 3;
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+                if (r != row && c != col && num == grid[r + startRow][c + startCol]) return false;
+            }
+        }
         return true;
     }
 }

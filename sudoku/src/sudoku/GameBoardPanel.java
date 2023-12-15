@@ -1,3 +1,12 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2023/2024
+ * Group Capstone Project
+ * Group #4
+ * 1 - 5026221045 - Mutiara Noor Fauzia
+ * 2 - 5026221096 - Viera Tito Virgiawan
+ * 3 - 5026221193 - Maureen Ghassani Fadhliphya
+ */
 package sudoku;
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +23,8 @@ public class GameBoardPanel extends JPanel {
     private Puzzle puzzle = new Puzzle();
     private Timer timer;
     private JLabel timerLabel;
+    private Mistake mistake;
+    private GameStatus status;
 
     public GameBoardPanel(Timer timer) {
         super.setLayout(new BorderLayout());
@@ -25,6 +36,7 @@ public class GameBoardPanel extends JPanel {
         timerLabel = new JLabel("Timer: 0 seconds");
 
         InputBar inputBar = new InputBar();
+        mistake = new Mistake();
         topPanel.add(inputBar, BorderLayout.SOUTH);
 
         super.add(topPanel, BorderLayout.PAGE_START);
@@ -69,17 +81,30 @@ public class GameBoardPanel extends JPanel {
         // Reset timer display
         timerLabel.setText("Timer: 0 seconds");
         timer.start();
+        mistake.reset();
+        status = GameStatus.RUNNING;
     }
 
     public boolean isSolved() {
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                if (cells[row][col].status == CellStatus.TO_GUESS || cells[row][col].status == CellStatus.WRONG_GUESS) {
+                if (status != GameStatus.FAILED && cells[row][col].status == CellStatus.TO_GUESS || cells[row][col].status == CellStatus.WRONG_GUESS) {
+                    status = GameStatus.SUCCESS;
                     return false;
                 }
             }
         }
         return true;
+    }
+    public void endGame(){
+        timer.stop();
+        status = GameStatus.FAILED;
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+                cells[row][col].endGame();
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Sorry! You make too much mistake, try again!");
     }
 
     private class CellInputListener implements ActionListener {
@@ -95,7 +120,9 @@ public class GameBoardPanel extends JPanel {
                     sourceCell.setStatus(CellStatus.WRONG_GUESS);
                 }
                 sourceCell.paint();
-                if (isSolved()) {
+                if(sourceCell.status == CellStatus.WRONG_GUESS) mistake.change();
+                if(mistake.getMistake() == 3) endGame();
+                if (isSolved() && status == GameStatus.SUCCESS || status == GameStatus.RUNNING) {
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
                 }
@@ -107,5 +134,8 @@ public class GameBoardPanel extends JPanel {
     }
     public Cell[][] getCells() {
         return cells;
+    }
+    public Mistake getMistake(){
+        return mistake;
     }
 }

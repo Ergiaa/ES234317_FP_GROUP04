@@ -7,7 +7,6 @@
  * 2 - 5026221096 - Viera Tito Virgiawan
  * 3 - 5026221193 - Maureen Ghassani Fadhliphya
  */
-
 package sudoku;
 import javax.swing.*;
 import java.awt.*;
@@ -46,22 +45,22 @@ public class Cell extends JButton {
     /** Reset this cell for a new game, given the puzzle number and isGiven */
     public void newGame(int number, boolean isGiven) {
         this.number = number;
+        setEnabled(true);
         status = isGiven ? CellStatus.GIVEN : CellStatus.TO_GUESS;
         paint();    // paint itself
+    }
+    public void endGame(){
+        super.setEnabled(false);
     }
 
     /** This Cell (JTextField) paints itself based on its status */
     public void paint() {
         if (status == CellStatus.GIVEN) {
-            // Inherited from JTextField: Set display properties
             super.setText(number + "");
-//            super.setEditable(false);
             super.setBackground(BG_GIVEN);
             super.setForeground(FG_GIVEN);
         } else if (status == CellStatus.TO_GUESS) {
-            // Inherited from JTextField: Set display properties
             super.setText("");
-//            super.setEditable(true);
             super.addActionListener(e -> {
                 if(status == CellStatus.TO_GUESS || status == CellStatus.WRONG_GUESS){
                     setText("" + SudokuMain.input);
@@ -81,13 +80,4 @@ public class Cell extends JButton {
     public void setStatus(CellStatus status) {
         this.status = status;
     }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
 }

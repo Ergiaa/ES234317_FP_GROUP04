@@ -1,3 +1,12 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2023/2024
+ * Group Capstone Project
+ * Group #4
+ * 1 - 5026221045 - Mutiara Noor Fauzia
+ * 2 - 5026221096 - Viera Tito Virgiawan
+ * 3 - 5026221193 - Maureen Ghassani Fadhliphya
+ */
 package sudoku;
 import javax.swing.*;
 import java.awt.*;
@@ -7,16 +16,19 @@ import java.util.Random;
 
 public class SudokuMain extends JFrame {
     private static final long serialVersionUID = 1L;
-    public static int input;
+    public static int input = 1;
 
     private int secondsPassed;
 
     private GameBoardPanel board;
-    private InputBar inputBar;
     private JButton btnNewGame;
     private JButton btnHint;
+    private JButton btnSolve;
+    private JPanel btnPanel;
+    private JTextField mistake;
     private Timer timer;
     private JLabel timerLabel;
+    private int hintCount;
 
     public SudokuMain() {
         Container cp = getContentPane();
@@ -38,47 +50,86 @@ public class SudokuMain extends JFrame {
 
         // Create instances of GameBoardPanel and InputBar
         board = new GameBoardPanel(timer);
-        inputBar = new InputBar();
+        btnPanel = new JPanel(new GridLayout());
 
         // Create a button to start a new game
         btnNewGame = new JButton("New Game");
         btnHint = new JButton("Hint");
+        btnSolve = new JButton("Solve");
+
+
+        mistake = new JTextField();
+        mistake.setEnabled(false);
+        mistake.setHorizontalAlignment(JTextField.CENTER);
+        mistake.setForeground(Color.black);
+        mistake.setText("0/3 Mistake");
         btnNewGame.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 secondsPassed = 0;
+                hintCount = 0;
                 updateTimerLabel();
                 board.newGame();
             }
         });
-//        btnHint.addActionListener(e -> {
-//            Random r = new Random();
-//            int row = 0, col = 0;
-//            for(int i = 0; i < 9; i++){
-//                for(int j = 0; j < 9; j++){
-//                    if(!board.getPuzzle().isGiven[i][j]){
-//                        row = i;
-//                        col = j;
-//                        break;
-//                    }
-//                }
-//                if(!board.getPuzzle().isGiven[row][col]){
-//                    break;
-//                }
-//            }
-//            board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
-//            board.getCells()[row][col].paint();
-//            if (board.isSolved()) {
-//                timer.stop();
-//                JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
-//            }
-//        });
-        cp.add(btnNewGame, BorderLayout.SOUTH);
-//        cp.add(btnHint, BorderLayout.LINE_END);
+        btnHint.addActionListener(e -> {
+            if(hintCount < 3){
+                Random r = new Random();
+                int row = 0, col = 0;
+                int count = 0;
+                boolean found = false;
+                do{
+                    row = r.nextInt(8) + 1;
+                    count = 0;
+                    do{
+                        col = r.nextInt(8) + 1;
+                        count++;
+                        if (board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
+                            found = true;
+                            break;
+                        }
+                        if(count > 9) break;
+                    } while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
+                    if (found) {
+                        found = false;
+                        break;
+                    }
+                }while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
+                if(board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
+                    board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
+                    board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
+                    board.getCells()[row][col].paint();
+                    hintCount++;
+                    if (board.isSolved()) {
+                        timer.stop();
+                        JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
+                    }
+                }
+            }
+        });
+        btnSolve.addActionListener(e -> {
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if(board.getCells()[i][j].status == CellStatus.TO_GUESS || board.getCells()[i][j].status == CellStatus.WRONG_GUESS) {
+                        board.getCells()[i][j].setText("" + board.getPuzzle().numbers[i][j]);
+                        board.getCells()[i][j].status = CellStatus.CORRECT_GUESS;
+                        board.getCells()[i][j].paint();
+                        if (board.isSolved()) {
+                            timer.stop();
+                            JOptionPane.showMessageDialog(null, "Here is the solved puzzle!");
+                        }
+                    }
+                }
+            }
+        });
+        btnPanel.add(btnHint, BorderLayout.NORTH);
+        btnPanel.add(btnNewGame, BorderLayout.NORTH);
+        btnPanel.add(btnSolve, BorderLayout.NORTH);
+        btnPanel.add(board.getMistake(),BorderLayout.SOUTH);
+        cp.add(btnPanel, BorderLayout.SOUTH);
 
         // Add the GameBoardPanel and InputBar to the center of the layout
         cp.add(board, BorderLayout.CENTER);
-        //cp.add(inputBar, BorderLayout.PAGE_START);
 
         // Initialize the UI
         pack();
