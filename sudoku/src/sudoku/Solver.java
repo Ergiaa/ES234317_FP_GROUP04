@@ -49,45 +49,32 @@ public class Solver {
             }
             for (;curValue <= 9 ; curValue++){
                 if (isSafe(grid, curRow, curCol, curValue)){
+                    Cell cell = new Cell(curRow, curCol);
+                    cell.number = curValue;
+                    grid[curRow][curCol] = curValue;
+                    stack.push(cell);
+                    curRow = curRow + (curCol+1)/9;
+                    curCol = (curCol+1)%9;
+                    curValue = 1;
                     break;
                 }
             }
-            if(curValue <= 9){
-                Cell cell = new Cell(curRow, curCol);
-                cell.number = curValue;
-                grid[curRow][curCol] = curValue;
-                stack.push(cell);
-                curRow = curRow + (curCol+1)/9;
-                curCol = (curCol+1)%9;
-                curValue = 1;
-            }else{
-                if (stack.size() > 0) {
-                    // Assign to a Cell variable the top of the stack (stack.pop())
+            if(curValue > 9){
+                if (!stack.isEmpty()) {
                     Cell cell = stack.pop();
-                    // while the Cell is locked
                     while (isLocked[cell.row][cell.col]) {
-                        // if stack size is greater than 0
-                        if (stack.size() > 0) {
-                            // assign to the Cell variable the top of the stack (i.e. pop)
+                        if (!stack.isEmpty()) {
                             cell = stack.pop();
                         } else {
-                            // print out the number of steps (time)
-                            // return false (no solution found)
                             System.out.println("Number of steps: " + time);
                             return false;
                         }
                     }
-                    // assign to curRow the row value of the Cell
                     curRow = cell.row;
-                    // assign to curCol the col value of the Cell
                     curCol = cell.col;
-                    // assign to curValue the value of the Cell + 1
                     curValue = cell.number + 1;
-                    // set the value of the board Cell at curRow, curCol to 0
                     grid[curRow][curCol] =  0;
                 } else {
-                    // print out the number of steps (time)
-                    // return false (no solution found)
                     System.out.println("Number of steps: " + time);
                     return false;
                 }
@@ -104,7 +91,6 @@ public class Solver {
                 }
             }
         }
-
         return isLocked;
     }
     public boolean isSafe(int[][] grid, int row, int col, int num)

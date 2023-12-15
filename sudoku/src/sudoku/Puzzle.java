@@ -18,6 +18,7 @@ public class Puzzle {
     // The clues - isGiven (no need to guess) or need to guess
     boolean[][] isGiven = new boolean[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     Solver solver = new Solver();
+    Random r = new Random();
     Scanner sc = new Scanner(Objects.requireNonNull(Main.class.getResourceAsStream("puzzleNums")));
     Scanner scTF = new Scanner(Objects.requireNonNull(Main.class.getResourceAsStream("trueFalse")));
 
@@ -27,7 +28,12 @@ public class Puzzle {
     }
     public void newPuzzle(int cellsToGuess) {
         //Fill array numbers from file puzzleNums
-        String p = sc.nextLine();
+        int rand = r.nextInt(5);
+        String p = "";
+        do{
+            p = sc.nextLine();
+            rand++;
+        }while(rand <= 5 && sc.hasNext());
         int i = 0;
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -42,7 +48,11 @@ public class Puzzle {
         // Fill array isGiven from file trueFalse
         i = 0;
         String pTF = "";
-        if(scTF.hasNext()) pTF = scTF.nextLine();
+        rand = r.nextInt(5);
+        do{
+            pTF = scTF.nextLine();
+            rand++;
+        }while(rand <= 5 && scTF.hasNext());
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 isGiven[row][col] = Integer.parseInt("" + pTF.charAt(i)) != 0;
