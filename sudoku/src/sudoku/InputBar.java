@@ -28,13 +28,13 @@ public class InputBar extends JPanel {
             int val = i;
             buttons[i - 1].addActionListener(e -> {
                 SudokuMain.input = val;
-                buttons[val - 1].setBackground(Color.GREEN);
+                buttons[val - 1].setBackground(new Color(185,250,248));
                 buttons[currInput - 1].setBackground(Color.WHITE);
                 currInput = val;
             });
             add(buttons[i - 1]);
         }
         currInput = 1;
-        buttons[0].setBackground(Color.GREEN);
+        buttons[0].setBackground(new Color(185,250,248));
     }
 }
