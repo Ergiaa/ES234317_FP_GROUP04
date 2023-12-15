@@ -25,6 +25,7 @@ public class SudokuMain extends JFrame {
     private JButton btnHint;
     private JButton btnSolve;
     private JPanel btnPanel;
+    private JTextField mistake;
     private Timer timer;
     private JLabel timerLabel;
     private int hintCount;
@@ -55,6 +56,13 @@ public class SudokuMain extends JFrame {
         btnNewGame = new JButton("New Game");
         btnHint = new JButton("Hint");
         btnSolve = new JButton("Solve");
+
+
+        mistake = new JTextField();
+        mistake.setEnabled(false);
+        mistake.setHorizontalAlignment(JTextField.CENTER);
+        mistake.setForeground(Color.black);
+        mistake.setText("0/3 Mistake");
         btnNewGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -114,9 +122,10 @@ public class SudokuMain extends JFrame {
                 }
             }
         });
-        btnPanel.add(btnHint);
-        btnPanel.add(btnNewGame);
-        btnPanel.add(btnSolve);
+        btnPanel.add(btnHint, BorderLayout.NORTH);
+        btnPanel.add(btnNewGame, BorderLayout.NORTH);
+        btnPanel.add(btnSolve, BorderLayout.NORTH);
+        btnPanel.add(board.getMistake(),BorderLayout.SOUTH);
         cp.add(btnPanel, BorderLayout.SOUTH);
 
         // Add the GameBoardPanel and InputBar to the center of the layout
