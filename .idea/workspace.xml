@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Adding group names" comment="-">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/GameMain$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/GameMain$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/GameMain$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/GameMain$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tictactoe/GameMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/tictactoe/GameMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Cell.java" afterDir="false" />
-    </list>
+    <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Adding group names" comment="-" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
