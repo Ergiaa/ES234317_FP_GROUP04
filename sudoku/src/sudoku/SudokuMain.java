@@ -8,10 +8,13 @@
  * 3 - 5026221193 - Maureen Ghassani Fadhliphya
  */
 package sudoku;
+import java.lang.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class SudokuMain extends JFrame {
@@ -24,10 +27,13 @@ public class SudokuMain extends JFrame {
     private JButton btnNewGame;
     private JButton btnHint;
     private JButton btnSolve;
+    private JButton btnReset;
     private JPanel btnPanel;
+    private JComboBox<String> difficulties;
     private JTextField mistake;
     private Timer timer;
     private JLabel timerLabel;
+    private String[] choices = {"Easy","Medium","Hard"};
     private int hintCount;
 
     public SudokuMain() {
@@ -56,6 +62,8 @@ public class SudokuMain extends JFrame {
         btnNewGame = new JButton("New Game");
         btnHint = new JButton("Hint");
         btnSolve = new JButton("Solve");
+        btnReset = new JButton("Reset");
+        difficulties = new JComboBox<>(choices);
 
 
         mistake = new JTextField();
@@ -73,58 +81,37 @@ public class SudokuMain extends JFrame {
             }
         });
         btnHint.addActionListener(e -> {
-            if(hintCount < 3){
-                Random r = new Random();
-                int row = 0, col = 0;
-                int count = 0;
-                boolean found = false;
-                do{
-                    row = r.nextInt(8) + 1;
-                    count = 0;
-                    do{
-                        col = r.nextInt(8) + 1;
-                        count++;
-                        if (board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
-                            found = true;
-                            break;
-                        }
-                        if(count > 9) break;
-                    } while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
-                    if (found) {
-                        found = false;
-                        break;
-                    }
-                }while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
-                if(board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
-                    board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
-                    board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
-                    board.getCells()[row][col].paint();
-                    hintCount++;
-                    if (board.isSolved()) {
-                        timer.stop();
-                        JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
-                    }
+            if(hintCount < 3 && board.giveHint()){
+                hintCount++;
+                if(board.isSolved()) {
+                       timer.stop();
+                       JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
                 }
+            } else if(hintCount == 3){
+                JOptionPane.showMessageDialog(null,"You have used all of your hints");
             }
         });
         btnSolve.addActionListener(e -> {
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    if(board.getCells()[i][j].status == CellStatus.TO_GUESS || board.getCells()[i][j].status == CellStatus.WRONG_GUESS) {
-                        board.getCells()[i][j].setText("" + board.getPuzzle().numbers[i][j]);
-                        board.getCells()[i][j].status = CellStatus.CORRECT_GUESS;
-                        board.getCells()[i][j].paint();
-                        if (board.isSolved()) {
-                            timer.stop();
-                            JOptionPane.showMessageDialog(null, "Here is the solved puzzle!");
-                        }
-                    }
-                }
-            }
+            board.solve();
+        });
+        btnReset.addActionListener(e -> {
+            board.resetGame();
+            timerLabel.setText("Timer: 0 seconds");
+            secondsPassed = 0;
+            timer.start();
+            hintCount = 0;
+        });
+        difficulties.addActionListener(e -> {
+            JComboBox<String> choice = (JComboBox<String>) e.getSource();
+            int difficulties = choice.getSelectedIndex();
+            board.setDifficulties(difficulties);
+            System.out.println(difficulties);
         });
         btnPanel.add(btnHint, BorderLayout.NORTH);
         btnPanel.add(btnNewGame, BorderLayout.NORTH);
+        btnPanel.add(btnReset, BorderLayout.NORTH);
         btnPanel.add(btnSolve, BorderLayout.NORTH);
+        btnPanel.add(difficulties, BorderLayout.NORTH);
         btnPanel.add(board.getMistake(),BorderLayout.SOUTH);
         cp.add(btnPanel, BorderLayout.SOUTH);
 
