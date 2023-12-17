@@ -29,6 +29,8 @@ public class SudokuMain extends JFrame {
     private JButton btnSolve;
     private JButton btnReset;
     private JPanel btnPanel;
+    private JPanel btnSubPanel0;
+    private JPanel btnSubPanel1;
     private JComboBox<String> difficulties;
     private JTextField mistake;
     private Timer timer;
@@ -56,7 +58,9 @@ public class SudokuMain extends JFrame {
 
         // Create instances of GameBoardPanel and InputBar
         board = new GameBoardPanel(timer);
-        btnPanel = new JPanel(new GridLayout());
+        btnPanel = new JPanel(new GridLayout(2,1));
+        btnSubPanel0 = new JPanel(new GridLayout());
+        btnSubPanel1 = new JPanel(new GridLayout());
 
         // Create a button to start a new game
         btnNewGame = new JButton("New Game");
@@ -107,12 +111,14 @@ public class SudokuMain extends JFrame {
             board.setDifficulties(difficulties);
             System.out.println(difficulties);
         });
-        btnPanel.add(btnHint, BorderLayout.NORTH);
-        btnPanel.add(btnNewGame, BorderLayout.NORTH);
-        btnPanel.add(btnReset, BorderLayout.NORTH);
-        btnPanel.add(btnSolve, BorderLayout.NORTH);
-        btnPanel.add(difficulties, BorderLayout.NORTH);
-        btnPanel.add(board.getMistake(),BorderLayout.SOUTH);
+        btnSubPanel0.add(btnHint, BorderLayout.NORTH);
+        btnSubPanel0.add(btnNewGame, BorderLayout.NORTH);
+        btnSubPanel0.add(btnReset, BorderLayout.NORTH);
+        btnSubPanel0.add(btnSolve, BorderLayout.NORTH);
+        btnSubPanel1.add(difficulties, BorderLayout.NORTH);
+        btnSubPanel1.add(board.getMistake(),BorderLayout.SOUTH);
+        btnPanel.add(btnSubPanel0);
+        btnPanel.add(btnSubPanel1);
         cp.add(btnPanel, BorderLayout.SOUTH);
 
         // Add the GameBoardPanel and InputBar to the center of the layout
