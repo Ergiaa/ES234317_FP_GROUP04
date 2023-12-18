@@ -7,18 +7,17 @@
  * 2 - 5026221096 - Viera Tito Virgiawan
  * 3 - 5026221193 - Maureen Ghassani Fadhliphya
  */
-package sudoku;
 
 import javax.swing.*;
 
-public class AboutFrame extends JFrame {
-    public AboutFrame() {
+public class About extends JFrame {
+    public About() {
             setSize(400, 600);
             setLocationRelativeTo(null);
             
             ImageIcon image = new ImageIcon("sudoku/src/sudoku/img/dev.png");
 
-            JLabel label = new JLabel("<html><br><center>Sudoku Game</center><center>Version 1.0</center><br><center>Developed by Group 4:</center><br>"
+            JLabel label = new JLabel("<html><br><center>Tic Tac Toe</center><center>Version 1.0</center><br><center>Developed by Group 4:</center><br>"
             + "<center>5026221096 - Viera Tito Virgiawan</center>"
             + "<center>5026221045 - Mutiara Noor Fauzia</center>"
             + "<center>5026221193 - Maureen Ghassani Fadhliphya</center><br>"
