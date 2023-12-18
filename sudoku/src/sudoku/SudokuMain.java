@@ -38,7 +38,6 @@ public class SudokuMain extends JFrame {
     public SudokuMain() {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
-        setLocationRelativeTo(null);
 
         // Create a timer
         timer = new Timer(1000, new ActionListener() {
@@ -131,19 +130,11 @@ public class SudokuMain extends JFrame {
 
         // Initialize the UI
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
     }
-    // Update the timer label text
-    private void updateTimerLabel() {
-        timerLabel.setText("Timer: " + secondsPassed + " seconds");
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SudokuMain());
-    }
-
     public void setMenu(MenuBar menu){
         menu.newGame.addActionListener(e -> {
             secondsPassed = 0;
@@ -176,5 +167,13 @@ public class SudokuMain extends JFrame {
             System.out.println(level);
             difficulties.setSelectedIndex(2);
         });
+    }
+    // Update the timer label text
+    private void updateTimerLabel() {
+        timerLabel.setText("Timer: " + secondsPassed + " seconds");
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SudokuMain());
     }
 }
