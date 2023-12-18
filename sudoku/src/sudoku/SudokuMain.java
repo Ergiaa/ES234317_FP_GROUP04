@@ -174,6 +174,6 @@ public class SudokuMain extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SudokuMain());
+        SwingUtilities.invokeLater(SudokuMain::new);
     }
 }

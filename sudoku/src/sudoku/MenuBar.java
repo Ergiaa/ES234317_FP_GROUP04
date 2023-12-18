@@ -35,7 +35,7 @@ public class MenuBar extends JMenuBar{
         option.add(hard);
 
         about.addActionListener(e -> {
-            SwingUtilities.invokeLater(() -> new AboutFrame());
+            SwingUtilities.invokeLater(AboutFrame::new);
 //            JOptionPane.showMessageDialog(null, "Sudoku & Tic Tac Toe built with Java & Swing\nVersion 1.0\n\nCreated by: Tito Virgiawan, Maureen Ghassani, Mutiara Noor", "About", JOptionPane.INFORMATION_MESSAGE);
         });
 

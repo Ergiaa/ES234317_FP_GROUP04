@@ -34,7 +34,7 @@ public class Puzzle {
 
         //Since puzzle from puzzleNums is incomplete, complete using a solver
         numbers = puzzle;
-        solver.solve(numbers);
+//        solver.solve(numbers);
 //        solver.solveSudoku(numbers,0,0);
 
         isGiven = generateGiven(isGiven, difficulties);
