@@ -12,6 +12,8 @@ public class MenuBar extends JMenuBar{
     JRadioButtonMenuItem easy = new JRadioButtonMenuItem("Easy");
     JRadioButtonMenuItem medium = new JRadioButtonMenuItem("Medium");
     JRadioButtonMenuItem hard = new JRadioButtonMenuItem("Hard");
+    JMenu help = new JMenu("Help");
+    JMenuItem about = new JMenuItem("About");
 
     public MenuBar(){
         exitGame.addActionListener(e -> {
@@ -32,7 +34,15 @@ public class MenuBar extends JMenuBar{
         option.add(medium);
         option.add(hard);
 
+        about.addActionListener(e -> {
+            AboutFrame frame = new AboutFrame();
+//            JOptionPane.showMessageDialog(null, "Sudoku & Tic Tac Toe built with Java & Swing\nVersion 1.0\n\nCreated by: Tito Virgiawan, Maureen Ghassani, Mutiara Noor", "About", JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        help.add(about);
+
         add(file);
         add(option);
+        add(help);
     }
 }

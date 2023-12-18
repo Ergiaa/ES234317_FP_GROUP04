@@ -38,6 +38,7 @@ public class SudokuMain extends JFrame {
     public SudokuMain() {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
         // Create a timer
         timer = new Timer(1000, new ActionListener() {
