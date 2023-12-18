@@ -65,7 +65,9 @@ public class SudokuMain extends JFrame {
         btnSolve = new JButton("Solve");
         btnReset = new JButton("Reset");
         difficulties = new JComboBox<>(choices);
-
+        MenuBar menu = new MenuBar();
+        setMenu(menu);
+        setJMenuBar(menu);
 
         mistake = new JTextField();
         mistake.setEnabled(false);
@@ -105,6 +107,11 @@ public class SudokuMain extends JFrame {
         difficulties.addActionListener(e -> {
             JComboBox<String> choice = (JComboBox<String>) e.getSource();
             int difficulties = choice.getSelectedIndex();
+
+            if(difficulties == 0)menu.easy.setSelected(true);
+            if(difficulties == 1)menu.medium.setSelected(true);
+            if(difficulties == 2)menu.hard.setSelected(true);
+
             board.setDifficulties(difficulties);
             System.out.println(difficulties);
         });
@@ -127,7 +134,6 @@ public class SudokuMain extends JFrame {
         setTitle("Sudoku");
         setVisible(true);
     }
-
     // Update the timer label text
     private void updateTimerLabel() {
         timerLabel.setText("Timer: " + secondsPassed + " seconds");
@@ -135,5 +141,39 @@ public class SudokuMain extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new SudokuMain());
+    }
+
+    public void setMenu(MenuBar menu){
+        menu.newGame.addActionListener(e -> {
+            secondsPassed = 0;
+            hintCount = 0;
+            updateTimerLabel();
+            board.newGame();
+        });
+        menu.resetGame.addActionListener(e -> {
+            board.resetGame();
+            timerLabel.setText("Timer: 0 seconds");
+            secondsPassed = 0;
+            timer.start();
+            hintCount = 0;
+        });
+        menu.easy.addActionListener(e -> {
+            int level = 0;
+            board.setDifficulties(level);
+            System.out.println(level);
+            difficulties.setSelectedIndex(0);
+        });
+        menu.medium.addActionListener(e -> {
+            int level = 1;
+            board.setDifficulties(level);
+            System.out.println(level);
+            difficulties.setSelectedIndex(1);
+        });
+        menu.hard.addActionListener(e -> {
+            int level = 2;
+            board.setDifficulties(level);
+            System.out.println(level);
+            difficulties.setSelectedIndex(2);
+        });
     }
 }
