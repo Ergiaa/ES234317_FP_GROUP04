@@ -24,6 +24,7 @@ public class GameBoardPanel extends JPanel {
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     private Puzzle puzzle = new Puzzle();
     private int difficulties = 0;
+    private int puzzleSource = 0;
     private Timer timer;
     private JLabel timerLabel;
     private Mistake mistake;
@@ -73,7 +74,7 @@ public class GameBoardPanel extends JPanel {
     }
 
     public void newGame() {
-        puzzle.newPuzzle(difficulties);
+        puzzle.newPuzzle(difficulties, puzzleSource);
 
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -185,6 +186,9 @@ public class GameBoardPanel extends JPanel {
 
     public void setDifficulties(int difficulties) {
         this.difficulties = difficulties;
+    }
+    public void setPuzzleSource(int puzzleSource){
+        this.puzzleSource = puzzleSource;
     }
 
     public Puzzle getPuzzle() {

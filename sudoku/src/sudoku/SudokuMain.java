@@ -113,7 +113,6 @@ public class SudokuMain extends JFrame {
             if(difficulties == 2)menu.hard.setSelected(true);
 
             board.setDifficulties(difficulties);
-            System.out.println(difficulties);
         });
         btnSubPanel0.add(btnHint, BorderLayout.NORTH);
         btnSubPanel0.add(btnNewGame, BorderLayout.NORTH);
@@ -152,20 +151,23 @@ public class SudokuMain extends JFrame {
         menu.easy.addActionListener(e -> {
             int level = 0;
             board.setDifficulties(level);
-            System.out.println(level);
             difficulties.setSelectedIndex(0);
         });
         menu.medium.addActionListener(e -> {
             int level = 1;
             board.setDifficulties(level);
-            System.out.println(level);
             difficulties.setSelectedIndex(1);
         });
         menu.hard.addActionListener(e -> {
             int level = 2;
             board.setDifficulties(level);
-            System.out.println(level);
             difficulties.setSelectedIndex(2);
+        });
+        menu.generator.addActionListener(e -> {
+            board.setPuzzleSource(0);
+        });
+        menu.template.addActionListener(e -> {
+            board.setPuzzleSource(1);
         });
     }
     // Update the timer label text

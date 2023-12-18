@@ -20,21 +20,32 @@ public class Puzzle {
     Solver solver = new Solver();
     Random r = new Random();
     Scanner sc = new Scanner(Objects.requireNonNull(Main.class.getResourceAsStream("puzzleNums")));
-    Scanner scTF = new Scanner(Objects.requireNonNull(Main.class.getResourceAsStream("trueFalse")));
 
     // Constructor
     public Puzzle() {
         super();
     }
-    public void newPuzzle(int difficulties) {
+    public void newPuzzle(int difficulties, int sourcePuzzle) {
         //Fill array numbers from file puzzleNums
         int[][] puzzle = new int[9][9];
-        generatePuzzle(puzzle,0,0);
-        printPuzzle(puzzle);
+        if(sourcePuzzle == 0) {
+            generatePuzzle(puzzle, 0, 0);
+            printPuzzle(puzzle);
+            numbers = puzzle;
+        } else if(sourcePuzzle == 1){
+            int random = r.nextInt(11);
+            String template = "";
+            for(int x = 0; x <= random; x++) template = sc.nextLine();
 
-        //Since puzzle from puzzleNums is incomplete, complete using a solver
-        numbers = puzzle;
-//        solver.solve(numbers);
+            int chr = 0;
+            for(int i = 0; i < 9; i++){
+                for(int j = 0; j < 9; j++){
+                    numbers[i][j] = Integer.parseInt("" + template.charAt(chr));
+                    chr++;
+                }
+            }
+        }
+        solver.solve(numbers);
 //        solver.solveSudoku(numbers,0,0);
 
         isGiven = generateGiven(isGiven, difficulties);

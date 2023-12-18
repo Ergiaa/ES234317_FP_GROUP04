@@ -7,10 +7,14 @@
     <list default="true" id="4e66e626-96d4-4200-b0e9-a6e11adcd53b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/MenuBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/MenuBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/Puzzle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/InputBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/InputBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sudoku/sudoku/SudokuMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/AboutFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/AboutFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/GameBoardPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/MenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/MenuBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/SudokuMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/puzzleNums" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/src/sudoku/puzzleNums" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku/src/sudoku/trueFalse" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
