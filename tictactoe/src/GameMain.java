@@ -81,7 +81,7 @@ public class GameMain extends JPanel {
         tPanel.add(statusBar, BorderLayout.PAGE_START);
 
         JPanel bPanel = new JPanel();
-        bPanel.setLayout(new BorderLayout());
+        bPanel.setLayout(new GridLayout());
 
         restartButton = new JButton("Restart");
         restartButton.setPreferredSize(new Dimension(150, 30));
@@ -118,8 +118,8 @@ public class GameMain extends JPanel {
         });
 
         bPanel.add(restartButton, BorderLayout.LINE_START);
-        bPanel.add(aboutButton, BorderLayout.LINE_END);
         bPanel.add(helpButton, BorderLayout.CENTER);
+        bPanel.add(aboutButton, BorderLayout.LINE_END);
 
         tbPanel.add(tPanel, BorderLayout.NORTH);
         tbPanel.add(bPanel, BorderLayout.SOUTH);
