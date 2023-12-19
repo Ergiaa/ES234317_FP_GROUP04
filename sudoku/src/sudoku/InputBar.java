@@ -9,10 +9,7 @@
  */
 package sudoku;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InputBar extends JPanel {
     JButton[] buttons;
@@ -27,10 +24,12 @@ public class InputBar extends JPanel {
             buttons[i - 1].setBackground(Color.WHITE);
             int val = i;
             buttons[i - 1].addActionListener(e -> {
-                SudokuMain.input = val;
-                buttons[val - 1].setBackground(new Color(185,250,248));
-                buttons[currInput - 1].setBackground(Color.WHITE);
-                currInput = val;
+                if(currInput != val) {
+                    SudokuMain.input = val;
+                    buttons[val - 1].setBackground(new Color(185, 250, 248));
+                    buttons[currInput - 1].setBackground(Color.WHITE);
+                    currInput = val;
+                }
             });
             add(buttons[i - 1]);
         }

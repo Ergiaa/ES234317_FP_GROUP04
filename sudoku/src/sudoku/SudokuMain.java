@@ -8,11 +8,11 @@
  * 3 - 5026221193 - Maureen Ghassani Fadhliphya
  */
 package sudoku;
+import java.lang.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class SudokuMain extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -24,10 +24,15 @@ public class SudokuMain extends JFrame {
     private JButton btnNewGame;
     private JButton btnHint;
     private JButton btnSolve;
+    private JButton btnReset;
     private JPanel btnPanel;
+    private JPanel btnSubPanel0;
+    private JPanel btnSubPanel1;
+    private JComboBox<String> difficulties;
     private JTextField mistake;
     private Timer timer;
     private JLabel timerLabel;
+    private String[] choices = {"Easy","Medium","Hard"};
     private int hintCount;
 
     public SudokuMain() {
@@ -50,13 +55,19 @@ public class SudokuMain extends JFrame {
 
         // Create instances of GameBoardPanel and InputBar
         board = new GameBoardPanel(timer);
-        btnPanel = new JPanel(new GridLayout());
+        btnPanel = new JPanel(new GridLayout(2,1));
+        btnSubPanel0 = new JPanel(new GridLayout());
+        btnSubPanel1 = new JPanel(new GridLayout());
 
         // Create a button to start a new game
         btnNewGame = new JButton("New Game");
         btnHint = new JButton("Hint");
         btnSolve = new JButton("Solve");
-
+        btnReset = new JButton("Reset");
+        difficulties = new JComboBox<>(choices);
+        MenuBar menu = new MenuBar();
+        setMenu(menu);
+        setJMenuBar(menu);
 
         mistake = new JTextField();
         mistake.setEnabled(false);
@@ -73,59 +84,44 @@ public class SudokuMain extends JFrame {
             }
         });
         btnHint.addActionListener(e -> {
-            if(hintCount < 3){
-                Random r = new Random();
-                int row = 0, col = 0;
-                int count = 0;
-                boolean found = false;
-                do{
-                    row = r.nextInt(8) + 1;
-                    count = 0;
-                    do{
-                        col = r.nextInt(8) + 1;
-                        count++;
-                        if (board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
-                            found = true;
-                            break;
-                        }
-                        if(count > 9) break;
-                    } while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
-                    if (found) {
-                        found = false;
-                        break;
-                    }
-                }while(board.getCells()[row][col].status == CellStatus.GIVEN || board.getCells()[row][col].status == CellStatus.CORRECT_GUESS);
-                if(board.getCells()[row][col].status == CellStatus.TO_GUESS || board.getCells()[row][col].status == CellStatus.WRONG_GUESS) {
-                    board.getCells()[row][col].setText("" + board.getPuzzle().numbers[row][col]);
-                    board.getCells()[row][col].status = CellStatus.CORRECT_GUESS;
-                    board.getCells()[row][col].paint();
-                    hintCount++;
-                    if (board.isSolved()) {
-                        timer.stop();
-                        JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
-                    }
+            if(hintCount < 3 && board.giveHint()){
+                hintCount++;
+                if(board.isSolved()) {
+                       timer.stop();
+                       JOptionPane.showMessageDialog(null, "Congratulations! You've solved the puzzle!");
                 }
+            } else if(hintCount == 3){
+                JOptionPane.showMessageDialog(null,"You have used all of your hints");
             }
         });
         btnSolve.addActionListener(e -> {
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    if(board.getCells()[i][j].status == CellStatus.TO_GUESS || board.getCells()[i][j].status == CellStatus.WRONG_GUESS) {
-                        board.getCells()[i][j].setText("" + board.getPuzzle().numbers[i][j]);
-                        board.getCells()[i][j].status = CellStatus.CORRECT_GUESS;
-                        board.getCells()[i][j].paint();
-                        if (board.isSolved()) {
-                            timer.stop();
-                            JOptionPane.showMessageDialog(null, "Here is the solved puzzle!");
-                        }
-                    }
-                }
-            }
+            board.solve();
         });
-        btnPanel.add(btnHint, BorderLayout.NORTH);
-        btnPanel.add(btnNewGame, BorderLayout.NORTH);
-        btnPanel.add(btnSolve, BorderLayout.NORTH);
-        btnPanel.add(board.getMistake(),BorderLayout.SOUTH);
+        btnReset.addActionListener(e -> {
+            board.resetGame();
+            timerLabel.setText("Timer: 0 seconds");
+            secondsPassed = 0;
+            timer.start();
+            hintCount = 0;
+        });
+        difficulties.addActionListener(e -> {
+            JComboBox<String> choice = (JComboBox<String>) e.getSource();
+            int difficulties = choice.getSelectedIndex();
+
+            if(difficulties == 0)menu.easy.setSelected(true);
+            if(difficulties == 1)menu.medium.setSelected(true);
+            if(difficulties == 2)menu.hard.setSelected(true);
+
+            board.setDifficulties(difficulties);
+        });
+        btnSubPanel0.add(btnHint, BorderLayout.NORTH);
+        btnSubPanel0.add(btnNewGame, BorderLayout.NORTH);
+        btnSubPanel0.add(btnReset, BorderLayout.NORTH);
+        btnSubPanel0.add(btnSolve, BorderLayout.NORTH);
+        btnSubPanel1.add(difficulties, BorderLayout.NORTH);
+        btnSubPanel1.add(board.getMistake(),BorderLayout.SOUTH);
+        btnPanel.add(btnSubPanel0);
+        btnPanel.add(btnSubPanel1);
         cp.add(btnPanel, BorderLayout.SOUTH);
 
         // Add the GameBoardPanel and InputBar to the center of the layout
@@ -133,17 +129,53 @@ public class SudokuMain extends JFrame {
 
         // Initialize the UI
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
     }
-
+    public void setMenu(MenuBar menu){
+        menu.newGame.addActionListener(e -> {
+            secondsPassed = 0;
+            hintCount = 0;
+            updateTimerLabel();
+            board.newGame();
+        });
+        menu.resetGame.addActionListener(e -> {
+            board.resetGame();
+            timerLabel.setText("Timer: 0 seconds");
+            secondsPassed = 0;
+            timer.start();
+            hintCount = 0;
+        });
+        menu.easy.addActionListener(e -> {
+            int level = 0;
+            board.setDifficulties(level);
+            difficulties.setSelectedIndex(0);
+        });
+        menu.medium.addActionListener(e -> {
+            int level = 1;
+            board.setDifficulties(level);
+            difficulties.setSelectedIndex(1);
+        });
+        menu.hard.addActionListener(e -> {
+            int level = 2;
+            board.setDifficulties(level);
+            difficulties.setSelectedIndex(2);
+        });
+        menu.generator.addActionListener(e -> {
+            board.setPuzzleSource(0);
+        });
+        menu.template.addActionListener(e -> {
+            board.setPuzzleSource(1);
+        });
+    }
     // Update the timer label text
     private void updateTimerLabel() {
         timerLabel.setText("Timer: " + secondsPassed + " seconds");
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SudokuMain());
+        SwingUtilities.invokeLater(SudokuMain::new);
     }
 }

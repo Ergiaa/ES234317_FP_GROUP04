@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameBoardPanel extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -21,6 +23,8 @@ public class GameBoardPanel extends JPanel {
 
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     private Puzzle puzzle = new Puzzle();
+    private int difficulties = 0;
+    private int puzzleSource = 0;
     private Timer timer;
     private JLabel timerLabel;
     private Mistake mistake;
@@ -70,7 +74,7 @@ public class GameBoardPanel extends JPanel {
     }
 
     public void newGame() {
-        puzzle.newPuzzle(2);
+        puzzle.newPuzzle(difficulties, puzzleSource);
 
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -96,6 +100,43 @@ public class GameBoardPanel extends JPanel {
         }
         return true;
     }
+    public void solve(){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if(cells[i][j].status == CellStatus.TO_GUESS || cells[i][j].status == CellStatus.WRONG_GUESS) {
+                    cells[i][j].setText("" + puzzle.numbers[i][j]);
+                    cells[i][j].status = CellStatus.CORRECT_GUESS;
+                    cells[i][j].paint();
+                    if (isSolved()) {
+                        timer.stop();
+                        JOptionPane.showMessageDialog(null, "Here is the solved puzzle!");
+                    }
+                }
+            }
+        }
+    }
+    public boolean giveHint(){
+        int[] nums = {0,1,2,3,4,5,6,7,8};
+        ArrayList<Integer> rows = new ArrayList<>(9);
+        ArrayList<Integer> cols = new ArrayList<>(9);
+        for(int i : nums){
+            rows.add(i);
+            cols.add(i);
+        }
+        Collections.shuffle(rows);
+        for(int i : rows){
+            Collections.shuffle(cols);
+            for(int j : cols){
+                if(cells[i][j].status == CellStatus.TO_GUESS || cells[i][j].status == CellStatus.WRONG_GUESS){
+                    cells[i][j].setText("" + puzzle.numbers[i][j]);
+                    cells[i][j].status = CellStatus.CORRECT_GUESS;
+                    cells[i][j].paint();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public void endGame(){
         timer.stop();
         status = GameStatus.FAILED;
@@ -105,6 +146,19 @@ public class GameBoardPanel extends JPanel {
             }
         }
         JOptionPane.showMessageDialog(null, "Sorry! You make too much mistake, try again!");
+    }
+    public void resetGame(){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(cells[i][j].status == CellStatus.CORRECT_GUESS || cells[i][j].status == CellStatus.WRONG_GUESS) {
+                    cells[i][j].setText("");
+                    cells[i][j].status = CellStatus.TO_GUESS;
+                    cells[i][j].paint();
+                }
+                cells[i][j].setEnabled(true);
+            }
+        }
+        mistake.reset();
     }
 
     private class CellInputListener implements ActionListener {
@@ -129,6 +183,14 @@ public class GameBoardPanel extends JPanel {
             }
         }
     }
+
+    public void setDifficulties(int difficulties) {
+        this.difficulties = difficulties;
+    }
+    public void setPuzzleSource(int puzzleSource){
+        this.puzzleSource = puzzleSource;
+    }
+
     public Puzzle getPuzzle() {
         return puzzle;
     }

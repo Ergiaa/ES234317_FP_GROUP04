@@ -31,6 +31,8 @@ public class GameMain extends JPanel {
     private State currentState;  // the current state of the game
     private Seed currentPlayer;  // the current player
     private JLabel statusBar;    // for displaying status message
+    private JButton restartButton; // for restarting the game
+    private JButton aboutButton;   // for dev information
 
     /** Constructor to setup the UI and game components */
     public GameMain() {
@@ -61,6 +63,9 @@ public class GameMain extends JPanel {
             }
         });
 
+        JPanel tbPanel = new JPanel();
+        tbPanel.setLayout(new BorderLayout());
+
         // Setup the status bar (JLabel) to display status message
         statusBar = new JLabel();
         statusBar.setFont(FONT_STATUS);
@@ -70,11 +75,46 @@ public class GameMain extends JPanel {
         statusBar.setHorizontalAlignment(JLabel.CENTER);
         statusBar.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 12));
 
+        JPanel tPanel = new JPanel();
+        tPanel.setLayout(new BorderLayout());
+        tPanel.add(statusBar, BorderLayout.PAGE_START);
+
+        JPanel bPanel = new JPanel();
+        bPanel.setLayout(new BorderLayout());
+
+        restartButton = new JButton("Restart");
+        restartButton.setPreferredSize(new Dimension(150, 30));
+        restartButton.setHorizontalAlignment(JButton.CENTER);
+        restartButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newGame(); 
+                repaint(); 
+            }
+        });
+
+        aboutButton = new JButton("About");
+        aboutButton.setPreferredSize(new Dimension(150, 30));
+        aboutButton.setHorizontalAlignment(JButton.CENTER);
+        aboutButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
+        aboutButton.addActionListener(e -> {
+            SwingUtilities.invokeLater(About::new);
+        });
+
+        bPanel.add(restartButton, BorderLayout.LINE_START);
+        bPanel.add(aboutButton, BorderLayout.LINE_END);
+
+        tbPanel.add(tPanel, BorderLayout.NORTH);
+        tbPanel.add(bPanel, BorderLayout.SOUTH);
+
         super.setLayout(new BorderLayout());
-        super.add(statusBar, BorderLayout.PAGE_END); // same as SOUTH
-        super.setPreferredSize(new Dimension(Board.CANVAS_WIDTH, Board.CANVAS_HEIGHT + 30));
-        // account for statusBar in height
-        super.setBorder(BorderFactory.createLineBorder(COLOR_BG_STATUS, 2, false));
+        //super.add(tPanel, BorderLayout.PAGE_START);
+        super.add(tbPanel, BorderLayout.PAGE_END);
+        super.setPreferredSize(new Dimension(Board.CANVAS_WIDTH, Board.CANVAS_HEIGHT + 60));
+        super.setBorder(BorderFactory.createLineBorder(COLOR_BG_STATUS, 0, false));
 
         // Set up Game
         initGame();

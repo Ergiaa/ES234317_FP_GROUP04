@@ -40,8 +40,16 @@ public class Cell extends JButton {
         // Inherited from JTextField: Beautify all the cells once for all
         super.setHorizontalAlignment(JTextField.CENTER);
         super.setFont(FONT_NUMBERS);
+        setCellBorder(row,col);
     }
+    private void setCellBorder(int row, int col) {
+        int top = (row % 3 == 0) ? 3 : 1;
+        int left = (col % 3 == 0) ? 3 : 1;
+        int bottom = (row % 3 == 2) ? 3 : 1;
+        int right = (col % 3 == 2) ? 3 : 1;
 
+        setBorder(BorderFactory.createMatteBorder(top, left, bottom, right, Color.BLACK));
+    }
     /** Reset this cell for a new game, given the puzzle number and isGiven */
     public void newGame(int number, boolean isGiven) {
         this.number = number;
@@ -55,6 +63,13 @@ public class Cell extends JButton {
 
     /** This Cell (JTextField) paints itself based on its status */
     public void paint() {
+
+//        if ((row / 3 + col / 3) % 2 == 0) {
+//            super.setBackground(BG_GIVEN);
+//        } else {
+//            super.setBackground(BG_TO_GUESS);
+//        }
+
         if (status == CellStatus.GIVEN) {
             super.setText(number + "");
             super.setBackground(BG_GIVEN);
