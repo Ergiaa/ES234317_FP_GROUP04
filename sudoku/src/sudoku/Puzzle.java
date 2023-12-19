@@ -26,17 +26,16 @@ public class Puzzle {
         super();
     }
     public void newPuzzle(int difficulties, int sourcePuzzle) {
-        //Fill array numbers from file puzzleNums
-        int[][] puzzle = new int[9][9];
         if(sourcePuzzle == 0) {
-            generatePuzzle(puzzle, 0, 0);
-            printPuzzle(puzzle);
-            numbers = puzzle;
+            //Run Puzzle Generator if generator is chosen as Source of Puzzle
+            generatePuzzle(numbers, 0, 0);
         } else if(sourcePuzzle == 1){
+            //Take one line of Puzzle Template from file randomly if template is chosen as Source of Puzzle
             int random = r.nextInt(11);
             String template = "";
             for(int x = 0; x <= random; x++) template = sc.nextLine();
 
+            //Put Puzzle Template into numbers array
             int chr = 0;
             for(int i = 0; i < 9; i++){
                 for(int j = 0; j < 9; j++){
@@ -45,23 +44,27 @@ public class Puzzle {
                 }
             }
         }
+        //Solve incomplete puzzle with solver
         solver.solve(numbers);
 //        solver.solveSudoku(numbers,0,0);
 
+        //Generate Array consisting of boolean to decide which cell is given
         isGiven = generateGiven(isGiven, difficulties);
     }
     public boolean generatePuzzle(int[][] puzzle, int row, int col){
+        //Create a collection of numbers from 1 to 9 then shuffle it
         ArrayList<Integer> nums = new ArrayList<>();
         for(int i = 1; i <= 9; i++) nums.add(i);
         Collections.shuffle(nums);
 
+        //Check position of current cell
         if(col == 9){
             col = 0;
             if(++row == 9){
                 return true;
             }
         }
-        boolean valid = false;
+        //Use collection of numbers in a cell and check if it is safe to be in that cell
         for(int i : nums){
             if(solver.isSafe(puzzle,row,col,i)){
                 puzzle[row][col] = i;
