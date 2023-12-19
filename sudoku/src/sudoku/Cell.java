@@ -43,10 +43,10 @@ public class Cell extends JButton {
         setCellBorder(row,col);
     }
     private void setCellBorder(int row, int col) {
-        int top = (row % 3 == 0) ? 2 : 1;
-        int left = (col % 3 == 0) ? 2 : 1;
-        int bottom = (row % 3 == 2) ? 2 : 1;
-        int right = (col % 3 == 2) ? 2 : 1;
+        int top = (row % 3 == 0) ? 3 : 1;
+        int left = (col % 3 == 0) ? 3 : 1;
+        int bottom = (row % 3 == 2) ? 3 : 1;
+        int right = (col % 3 == 2) ? 3 : 1;
 
         setBorder(BorderFactory.createMatteBorder(top, left, bottom, right, Color.BLACK));
     }
