@@ -33,6 +33,7 @@ public class GameMain extends JPanel {
     private JLabel statusBar;    // for displaying status message
     private JButton restartButton; // for restarting the game
     private JButton aboutButton;   // for dev information
+    private JButton helpButton; // for displaying game rules
 
     /** Constructor to setup the UI and game components */
     public GameMain() {
@@ -90,8 +91,20 @@ public class GameMain extends JPanel {
         restartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newGame(); 
-                repaint(); 
+                newGame();
+                repaint();
+            }
+        });
+
+        helpButton = new JButton("Help");
+        helpButton.setPreferredSize(new Dimension(150, 30));
+        helpButton.setHorizontalAlignment(JButton.CENTER);
+        helpButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+        helpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showHelp(); // Display help information
             }
         });
 
@@ -106,6 +119,7 @@ public class GameMain extends JPanel {
 
         bPanel.add(restartButton, BorderLayout.LINE_START);
         bPanel.add(aboutButton, BorderLayout.LINE_END);
+        bPanel.add(helpButton, BorderLayout.CENTER);
 
         tbPanel.add(tPanel, BorderLayout.NORTH);
         tbPanel.add(bPanel, BorderLayout.SOUTH);
@@ -159,6 +173,16 @@ public class GameMain extends JPanel {
             statusBar.setForeground(new Color(241, 250, 238));
             statusBar.setText("'O' Won! Click to play again.");
         }
+    }
+    private void showHelp() {
+        String helpMessage = "Welcome to Tic-Tac-Toe!\n\n" +
+                "How to play:\n" +
+                "- Click on an empty cell to make a move.\n" +
+                "- The game is won by the player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row.\n" +
+                "- If all cells are filled and no player has won, the game is a draw.\n\n" +
+                "Enjoy playing!";
+
+        JOptionPane.showMessageDialog(this, helpMessage, "Game Help", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /** The entry "main" method */
